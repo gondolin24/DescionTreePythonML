@@ -1,5 +1,6 @@
-import numpy as np
 import pandas as pd
+from sklearn import tree
 
-testDataSet = pd.read_csv("C:/Users/gondolin\PycharmProjects/MLTitanic/DescionTreePythonML/data/test.csv")
-trainDataSet = pd.read_csv("C:/Users/gondolin\PycharmProjects/MLTitanic/DescionTreePythonML/data/train.csv")
+# Read from a csv and set index column
+trainDataSet = pd.read_csv("C:/Users/gondolin/PycharmProjects/MLTitanic/DescionTreePythonML/data/train.csv", index_col='PassengerId')
+
