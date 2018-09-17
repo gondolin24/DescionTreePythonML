@@ -6,3 +6,6 @@ trainDataSet = pd.read_csv("C:/Users/gondolin/PycharmProjects/MLTitanic/DescionT
                            index_col='PassengerId')
 trainDataSet = trainDataSet[trainDataSet.columns.tolist()]
 trainDataSet['Sex'] = trainDataSet['Sex'].map({'male': 0, 'female': 1})
+trainDataSet.dropna()
+X = trainDataSet.drop('Survived', axis=1)
+y = trainDataSet['Survived']
