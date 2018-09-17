@@ -4,10 +4,17 @@ from sklearn.model_selection import train_test_split
 import numpy as np
 from sklearn.metrics import accuracy_score
 
+testDataSet = pd.read_csv("C:/Users/gondolin/PycharmProjects/MLTitanic/DescionTreePythonML/data/test.csv",
+                           index_col='PassengerId')
 # Read from a csv and set index column
 trainDataSet = pd.read_csv("C:/Users/gondolin/PycharmProjects/MLTitanic/DescionTreePythonML/data/train.csv",
                            index_col='PassengerId')
 trainDataSet = trainDataSet[trainDataSet.columns.tolist()]
+
+
+#Setup Test Data
+testDataSet['Sex'] = testDataSet['Sex'].map({'male': 0, 'female': 1})
+testDataSet['Embarked'] = testDataSet['Embarked'].map({'C': 0, 'Q': 1, 'S': 2})
 
 # Data Sanataize
 trainDataSet['Sex'] = trainDataSet['Sex'].map({'male': 0, 'female': 1})
