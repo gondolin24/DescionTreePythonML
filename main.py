@@ -15,11 +15,19 @@ trainDataSet = trainDataSet[trainDataSet.columns.tolist()]
 #Setup Test Data
 testDataSet['Sex'] = testDataSet['Sex'].map({'male': 0, 'female': 1})
 testDataSet['Embarked'] = testDataSet['Embarked'].map({'C': 0, 'Q': 1, 'S': 2})
-
+yy = testDataSet
+yy = yy.drop('SibSp', axis=1)  # not needed
+yy = yy.drop('Parch', axis=1)  # not needed
+yy = yy.drop('Embarked', axis=1)  # not needed
+yy = yy.drop('Fare', axis=1)  # not needed
+yy = yy.drop('Age', axis=1)  # not needed
+X_test = yy
+y_train = trainDataSet.get('Survived')
 # Data Sanataize
 trainDataSet['Sex'] = trainDataSet['Sex'].map({'male': 0, 'female': 1})
 trainDataSet['Embarked'] = trainDataSet['Embarked'].map({'C': 0, 'Q': 1, 'S': 2})
 trainDataSet.dropna()
+
 X = trainDataSet.drop('Survived', axis=1)
 X = X.drop('Name', axis=1)  # not needed
 X = X.drop('Ticket', axis=1)  # not needed
@@ -34,7 +42,9 @@ for passAge in AgeCol:
         intSum = passAge + intSum
         intCount = intCount + 1
 averageAge = intSum/intCount
+# There has to be a better way
 
+X.get('Age').fillna(averageAge, inplace=True)
 
 # trainDataSet['Age'] = trainDataSet['Age'].map({'nan': averageAge})
 X = X.drop('SibSp', axis=1)  # not needed
@@ -45,6 +55,8 @@ X = X.drop('Age', axis=1)  # not needed
 
 print(X.head(n=0))
 y = trainDataSet['Survived']
+X_train = X
+
 X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=1)
 
 model = tree.DecisionTreeClassifier()
