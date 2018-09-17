@@ -51,7 +51,6 @@ X = X.drop('SibSp', axis=1)  # not needed
 X = X.drop('Parch', axis=1)  # not needed
 X = X.drop('Embarked', axis=1)  # not needed
 X = X.drop('Fare', axis=1)  # not needed
-X = X.drop('Age', axis=1)  # not needed
 
 print(X.head(n=0))
 y = trainDataSet['Survived']
